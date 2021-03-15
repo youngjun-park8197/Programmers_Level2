@@ -8,23 +8,34 @@
 using namespace std;
 
 bool checkPrime(int num) {
-    if(num == 0 || num == 1) { return false; }
-    for(int i = 0; i < sqrt(num); i++) {
-        if(num % i == 0) { return false; }
+    if(num == 0 || num == 1) { return false; }      // 0과 1은 소수 검사에서 제외
+    for(int i = 2; i < sqrt(num); i++) {            // 2부터 해당 주어진 수의 제곱근 까지만 검사
+        if(num % i == 0) { return false; }          // 나누어 떨어지면 소수 X
     }
     return true;
 }
 
 bool Included(int num, string str) {
-    string strNum = to_string(str);
+    string strNum = to_string(num);                 // 숫자를 문자열로 변환
     for(int i = 0; i < strNum.size(); i++) {
-        
+        int check = false;
+        for(int j = 0; j < str.size(); j++) {
+            if(strNum.at(i) == str.at(j)) {         // 일치하는 문자가 있다면
+                check = true;
+                str.at(j) = ' ';                    // 해당 문자 공백으로 적용, 다시 사용하지 않도록하기 위함임
+                break;
+            }
+        }
+        if(!check) 
+            return false;
     }
+    return true;
 }
 
 int solution(string numbers) {
     int answer = 0;
     int val = 0;
+    
     // numbers 문자열을 개별 숫자로 변환하되 맨앞에 0이 오지 않도록 한다
     // greater<int>() 에 대해 이해 필요
     // 가장 큰 수가 앞에서부터 정렬됨
