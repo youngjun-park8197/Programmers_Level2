@@ -1,0 +1,27 @@
+!직접 풀이 및 부분 정답 해결(효율성 검증에서 1 성공, 3 실패)
+
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+bool solution(vector<string> phone_book) {
+    bool answer = true;
+    int result = 0;
+    
+    string temp = "";
+    temp = phone_book.front(); // 접두어 비교를 위한 사전 정의
+    
+    for(int i = 1; i < phone_book.size(); i++) {
+        result = phone_book[i].find(temp);
+        if(result == 0) answer = false;
+    }
+    
+    return answer;
+}
+
+
+####################################################################
+
+
